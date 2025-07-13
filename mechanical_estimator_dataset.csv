@@ -1,0 +1,21 @@
+Item,Categoria,Quantidade,Unidade,Preço Unitário (€),Fornecedor
+"Copper Pipe 1""",HVAC,50,meter,8.5,Supplier A
+Insulation Foam,HVAC,20,m²,4.2,Supplier B
+Water Pump,Plumbing,2,unit,350.0,Supplier A
+Duct Connector,Ventilation,10,unit,15.0,Supplier C
+"Ball Valve 1""",Plumbing,5,unit,22.0,Supplier A
+"PVC Pipe 2""",Plumbing,30,meter,5.6,Supplier B
+Flexible Duct,Ventilation,12,meter,18.0,Supplier C
+Drain Trap,Plumbing,8,unit,12.5,Supplier D
+Duct Hanger,HVAC,25,unit,3.75,Supplier C
+Thermostat,HVAC,3,unit,95.0,Supplier A
+Expansion Tank,Plumbing,2,unit,180.0,Supplier B
+Air Diffuser,Ventilation,6,unit,28.0,Supplier D
+Pipe Insulation,HVAC,40,meter,2.3,Supplier C
+Pressure Gauge,Plumbing,4,unit,45.0,Supplier B
+Fan Coil Unit,HVAC,2,unit,670.0,Supplier A
+Steel Bracket,General,15,unit,6.2,Supplier D
+Chilled Water Pipe,HVAC,25,meter,9.8,Supplier A
+Vent Grille,Ventilation,10,unit,22.5,Supplier C
+Pipe Clamp,General,30,unit,1.9,Supplier B
+Circulator Pump,Plumbing,1,unit,410.0,Supplier A
