@@ -50,6 +50,17 @@ if uploaded_file:
     else:
         df = pd.read_excel(uploaded_file)
 
+# ✅ Rename columns to English if needed
+df.rename(columns={
+    "Item": "Item",
+    "Categoria": "Category",
+    "Quantidade": "Quantity",
+    "Unidade": "Unit",
+    "Preço Unitário (€)": "Unit Price (€)",
+    "Fornecedor": "Supplier",
+    "Custo Total (€)": "Total Cost (€)"
+}, inplace=True)
+
 # Calculate total cost if missing
 if "Total Cost (€)" not in df.columns:
     df["Total Cost (€)"] = df["Quantity"] * df["Unit Price (€)"]
