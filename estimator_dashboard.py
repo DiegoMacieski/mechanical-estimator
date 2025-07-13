@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# ✅ O set_page_config deve ser o primeiro comando do Streamlit
+# ✅ set_page_config must be the first Streamlit command
 st.set_page_config(page_title="Mechanical Estimation Dashboard", layout="wide")
 
-# 🔧 Introdução institucional da Tritech
+# 🔧 Company introduction
 st.markdown("""
 ### 🔧 About Tritech Engineering
 
@@ -20,9 +20,10 @@ Since its foundation, Tritech’s mission has been to deliver complex engineerin
 - Electrical Engineering: High-quality MV/LV installations, control systems, instrumentation, and automation.
 - Design & Build: Custom solutions focused on energy efficiency and sustainability, especially in HVAC systems.
 - Asset Management & PPM: Preventive and corrective maintenance with 24/7 technical support.
-- Validation & Reactive Maintenance: Skilled teams available for emergency interventions and technical checks. """)
+- Validation & Reactive Maintenance: Skilled teams available for emergency interventions and technical checks.
+""")
 
-# 🚀 Descrição do app
+# 🚀 App Description
 st.title("🔧 Mechanical Estimation Dashboard")
 st.markdown("""
 This professional estimator app allows you to:
@@ -33,7 +34,7 @@ This professional estimator app allows you to:
 - Visualize data clearly
 """)
 
-# 📂 Upload e carregamento de dados
+# 📂 Data upload and loading
 @st.cache_data
 def load_data():
     return pd.read_csv("mechanical_estimator_dataset.csv")
@@ -49,52 +50,52 @@ if uploaded_file:
     else:
         df = pd.read_excel(uploaded_file)
 
-# Cálculo do custo original (caso não exista)
-if "Custo Total (€)" not in df.columns:
-    df["Custo Total (€)"] = df["Quantidade"] * df["Preço Unitário (€)"]
+# Calculate total cost if missing
+if "Total Cost (€)" not in df.columns:
+    df["Total Cost (€)"] = df["Quantity"] * df["Unit Price (€)"]
 
-# 🔍 Filtros
+# 🔍 Filters
 st.sidebar.header("🔍 Filters")
-categoria = st.sidebar.selectbox("Select Category", options=["All"] + sorted(df['Categoria'].unique().tolist()))
-fornecedor = st.sidebar.selectbox("Select Supplier", options=["All"] + sorted(df['Fornecedor'].unique().tolist()))
+category = st.sidebar.selectbox("Select Category", options=["All"] + sorted(df['Category'].unique().tolist()))
+supplier = st.sidebar.selectbox("Select Supplier", options=["All"] + sorted(df['Supplier'].unique().tolist()))
 
 filtered_df = df.copy()
-if categoria != "All":
-    filtered_df = filtered_df[filtered_df['Categoria'] == categoria]
-if fornecedor != "All":
-    filtered_df = filtered_df[filtered_df['Fornecedor'] == fornecedor]
+if category != "All":
+    filtered_df = filtered_df[filtered_df['Category'] == category]
+if supplier != "All":
+    filtered_df = filtered_df[filtered_df['Supplier'] == supplier]
 
-# 📈 Simulador de Cenários
+# 📈 Scenario Simulator
 st.sidebar.header("🧮 Scenario Simulator")
 markup = st.sidebar.slider("Markup (%)", 0, 50, 10)
 waste = st.sidebar.slider("Waste Factor (%)", 0, 20, 0)
 
-filtered_df["Adjusted Qty"] = filtered_df["Quantidade"] * (1 + waste / 100)
-filtered_df["Final Unit Price"] = filtered_df["Preço Unitário (€)"] * (1 + markup / 100)
+filtered_df["Adjusted Qty"] = filtered_df["Quantity"] * (1 + waste / 100)
+filtered_df["Final Unit Price"] = filtered_df["Unit Price (€)"] * (1 + markup / 100)
 filtered_df["Adjusted Cost (€)"] = filtered_df["Adjusted Qty"] * filtered_df["Final Unit Price"]
 
 total_adjusted_cost = filtered_df["Adjusted Cost (€)"].sum()
 
-# 📋 Tabela final
+# 📋 Final Table
 st.subheader("📋 Bill of Materials (Filtered and Adjusted)")
 st.dataframe(filtered_df, use_container_width=True)
 
-# 💶 Custo total estimado
+# 💶 Total Estimated Cost
 st.subheader("💶 Estimated Total Cost")
 st.metric("Adjusted Total Cost", f"€ {total_adjusted_cost:,.2f}")
 
-# 📊 Gráficos
+# 📊 Charts
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("### 📊 Cost by Category")
-    fig1 = px.bar(filtered_df.groupby("Categoria")["Adjusted Cost (€)"].sum().reset_index(),
-                  x="Categoria", y="Adjusted Cost (€)", text_auto=True)
+    fig1 = px.bar(filtered_df.groupby("Category")["Adjusted Cost (€)"].sum().reset_index(),
+                  x="Category", y="Adjusted Cost (€)", text_auto=True)
     st.plotly_chart(fig1, use_container_width=True)
 
 with col2:
     st.markdown("### 🧱 Cost Distribution (Pie)")
-    fig2 = px.pie(filtered_df, names="Categoria", values="Adjusted Cost (€)", hole=0.3)
+    fig2 = px.pie(filtered_df, names="Category", values="Adjusted Cost (€)", hole=0.3)
     st.plotly_chart(fig2, use_container_width=True)
 
 # ⬇️ Download CSV
