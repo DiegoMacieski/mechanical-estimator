@@ -27,7 +27,7 @@ Since its foundation, Tritech’s mission has been to deliver complex engineerin
 st.title("🔧 Mechanical Estimation Dashboard")
 st.markdown("""
 This professional estimator app allows you to:
-- Upload a Bill of Materials (BOM)
+- Upload a Bill of Quantities (BOQ)
 - Filter and analyze costs
 - Simulate different project scenarios
 - Compare supplier pricing
@@ -41,8 +41,8 @@ def load_data():
 
 df = load_data()
 
-st.sidebar.header("📤 Upload BOM File")
-uploaded_file = st.sidebar.file_uploader("Upload Bill of Materials (CSV or Excel)", type=["csv", "xlsx"])
+st.sidebar.header("📤 Upload BOQ File")
+uploaded_file = st.sidebar.file_uploader("Upload Bill of Quantities (CSV or Excel)", type=["csv", "xlsx"])
 
 if uploaded_file:
     if uploaded_file.name.endswith(".csv"):
@@ -88,7 +88,7 @@ filtered_df["Adjusted Cost (€)"] = filtered_df["Adjusted Qty"] * filtered_df["
 total_adjusted_cost = filtered_df["Adjusted Cost (€)"].sum()
 
 # 📋 Final Table
-st.subheader("📋 Bill of Materials (Filtered and Adjusted)")
+st.subheader("📋 Bill of Quantities (Filtered and Adjusted)")
 st.dataframe(filtered_df, use_container_width=True)
 
 # 💶 Total Estimated Cost
@@ -111,4 +111,4 @@ with col2:
 
 # ⬇️ Download CSV
 csv = filtered_df.to_csv(index=False).encode('utf-8')
-st.download_button("📥 Download Adjusted BOM (CSV)", data=csv, file_name="adjusted_BOM.csv", mime="text/csv")
+st.download_button("📥 Download Adjusted BOQ (CSV)", data=csv, file_name="adjusted_BOQ.csv", mime="text/csv")
