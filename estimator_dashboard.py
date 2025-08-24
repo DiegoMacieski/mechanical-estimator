@@ -5,22 +5,25 @@ import plotly.express as px
 # ✅ set_page_config must be the first Streamlit command
 st.set_page_config(page_title="Mechanical Estimation Dashboard", layout="wide")
 
-# 🔧 Company introduction
+# 📌 Introduction
 st.markdown("""
-### 🔧 About Tritech Engineering
+### 🔧 About Mechanical Estimation
 
-Tritech Engineering is a specialist mechanical, electrical, and maintenance contractor founded in 1999 and based in Dublin, Ireland. The company delivers complex engineering projects across healthcare, pharmaceutical, industrial, educational, commercial, and residential sectors — providing end-to-end solutions from design and installation to ongoing maintenance.
+Mechanical estimation is a critical process in construction and engineering projects.  
+It involves preparing detailed cost forecasts for equipment, piping, HVAC systems, and other mechanical installations — helping companies make informed decisions before and during execution.  
 
-**🎯 Mission**
+**🎯 Key Objectives**
+- Ensure cost accuracy for project budgeting and planning
+- Support procurement and supplier selection
+- Identify potential cost savings and risks
+- Simulate different project scenarios to improve decision-making
 
-Since its foundation, Tritech’s mission has been to deliver complex engineering projects in commercial environments while building long-term partnerships with clients, real estate professionals, and design team members. This mission is supported by the company’s five strategic pillars: People, Partnering, Performance, Prevention, and Process.
-
-**🌟 Core Services**
-- Mechanical Engineering: Installation of HVAC systems, industrial piping, and mechanical equipment.
-- Electrical Engineering: High-quality MV/LV installations, control systems, instrumentation, and automation.
-- Design & Build: Custom solutions focused on energy efficiency and sustainability, especially in HVAC systems.
-- Asset Management & PPM: Preventive and corrective maintenance with 24/7 technical support.
-- Validation & Reactive Maintenance: Skilled teams available for emergency interventions and technical checks.
+**🌟 Typical Applications**
+- Commercial, industrial, and residential projects
+- HVAC system design and installation
+- Piping and process systems
+- Preventive maintenance planning
+- Cost benchmarking across suppliers
 """)
 
 # 🚀 App Description
